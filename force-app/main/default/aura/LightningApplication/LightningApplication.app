@@ -33,5 +33,5 @@
     <!-- <c:CalculatorUtility /> -->
     <!-- <c:DigitalClock /> -->
     <c:CustomTable />
-    <c:infinityLoading />
+    <!-- <c:infinityLoading /> -->
 </aura:application>
