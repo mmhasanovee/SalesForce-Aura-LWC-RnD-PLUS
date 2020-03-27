@@ -1,0 +1,9 @@
+<design:component label="TestingApp_Two_CustomLayout">
+  <flexipage:template >
+    <flexipage:region name="header" defaultWidth="Large"/>
+    <flexipage:region name="left_col" defaultWidth="Large" />
+    <flexipage:region name="mid_col" defaultWidth="Large" />
+    <flexipage:region name="right_col" defaultWidth="Large" />        
+    <flexipage:region name="footer" defaultWidth="Large" />
+  </flexipage:template>
+</design:component>

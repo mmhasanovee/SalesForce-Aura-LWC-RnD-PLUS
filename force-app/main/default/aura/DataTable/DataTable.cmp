@@ -1,0 +1,18 @@
+<aura:component controller="DataTableAuraServices">
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="selected" type="Object" />
+    <aura:attribute name="columns" type="Object" />
+    <aura:attribute name="hide" type="String" default="slds-hide" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div class="slds-p-around_small">
+        <lightning:datatable aura:id="accountTable" keyField="id" data="{!v.data}" columns="{!v.columns}"
+            hideCheckboxColumn="false" onrowselection="{!c.doSelectRecord}" onrowaction="{!c.handleRowAction}"
+            onsave="{!c.handleDraftValues}" />
+    </div>
+
+    <div class="{!v.hide}">
+        <lightning:button name="delete" label="Delete" variant="brand" onclick="{!c.doDelete}" />
+    </div>
+
+
+</aura:component>

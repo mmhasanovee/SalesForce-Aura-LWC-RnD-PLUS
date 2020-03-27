@@ -1,0 +1,25 @@
+<aura:component controller="PlaneListXController" implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+    <aura:attribute name="accountId" type="String" />
+    <aura:registerEvent name="quickPlane" type="c:CreateNewPlaneEvent"/>
+    <aura:attribute name="CreatePlane" type="Plane__c" default="{
+                                                                 sobjectName : 'Plane__c',
+                                                                 Name: '',
+                                                                 Plane_Model__c: '',
+                                                                 Plane_Price__c: '',
+                                                                 Status__c: ''}" />
+    <div class="container" >
+        <lightning:input type="text" aura:id="planeForm" class="textInput"
+        messageWhenValueMissing="Please enter Plane Name" value="{!v.CreatePlane.Name}" label="Name" required="true"/>
+        <lightning:input type="text" aura:id="planeForm" class="textInput"
+        messageWhenValueMissing="Please enter Model name" value="{!v.CreatePlane.Plane_Model__c}" label="Model Name" required="true"/>
+        <lightning:input type="number" aura:id="planeForm" class="textInput"
+        messageWhenValueMissing="Please enter Price" value="{!v.CreatePlane.Plane_Price__c}" label="Price" required="true" />
+
+        <lightning:input type="text" class="textInput"
+        messageWhenValueMissing="Please enter Status" aura:id="planeForm" value="{!v.CreatePlane.Status__c}" label="Status" required="false" />
+
+        <!-- <lightning:inputField aura:id="planeForm" value="{!v.CreatePlane.Status__c}"/> -->
+
+        <lightning:button class="slds-m-top_medium" label="Create New Plane" variant="brand" onclick="{!c.doSave}" />
+    </div>
+</aura:component>

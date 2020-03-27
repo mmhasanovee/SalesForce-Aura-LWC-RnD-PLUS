@@ -1,0 +1,68 @@
+<aura:component implements="lightning:appHomeTemplate" description="TestingApp_Two_CustomLayout">
+    <ltng:require styles="{!$Resource.nohead}"/>
+    <aura:attribute name="header" type="Aura.Component[]" />
+    <aura:attribute name="left_col" type="Aura.Component[]" />
+    <aura:attribute name="mid_col" type="Aura.Component[]" />
+    <aura:attribute name="right_col" type="Aura.Component[]" />
+
+    <aura:attribute name="footer" type="Aura.Component[]" />
+    <div>
+
+        <!-- Row 1 -->
+        <lightning:layout>
+
+            <lightning:layoutItem size="12" class="">
+               
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+        <!-- Row 1+1 -->
+        <lightning:layout>
+
+            <!-- <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.left_col}
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.mid_col}
+            </lightning:layoutItem> -->
+
+            
+            <lightning:layoutItem size="12" class="">
+                <c:HeaderComponent TagLine="Plane Database Management" message="Powered By Hasan©"></c:HeaderComponent>
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+        <!-- Row 2 -->
+        <lightning:layout>
+
+            <!-- <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.left_col}
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.mid_col}
+            </lightning:layoutItem> -->
+
+            <lightning:layoutItem size="12" class="">
+                {!v.right_col}
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+        <!-- Row 3 -->
+        <lightning:layout>
+
+            <lightning:layoutItem size="12" class="">
+                
+                    <img src="{!$Resource.planeFooter}" />
+                
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+
+    </div>
+</aura:component>

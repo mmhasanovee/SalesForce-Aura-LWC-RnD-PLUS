@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-p-around_small">
+        <div class="slds-grid slds-wrap">
+            <template for:each={planes.data} for:item="plane">
+                <div key={plane.key} class="slds-col slds-size_1-of-3 slds-p-around_small">
+                    <lightning-card variant="Narrow" title={plane.Name} icon-name="standard:opportunity">
+                        <lightning-button class="mewmew" variant="brand" label="LWC" title="Update Details">
+                        </lightning-button>
+                        <p class="slds-p-horizontal_small">
+                            Plane Name: {plane.Name} &nbsp;&nbsp; Price: {plane.Plane_Price__c} <br />
+                            Status: {plane.Status__c}
+                        </p>
+                        <p slot="footer">{plane.Plane_Model__c}</p>
+                    </lightning-card>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

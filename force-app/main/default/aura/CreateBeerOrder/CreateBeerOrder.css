@@ -1,0 +1,9 @@
+.THIS {
+    background-color:rgba(255,255,255,0.5);
+}
+
+.THIS.centerBottom{
+    position:fixed;
+      bottom:0px;
+      left:50%;
+  }

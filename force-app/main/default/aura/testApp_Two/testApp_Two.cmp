@@ -1,0 +1,49 @@
+<aura:component implements="lightning:homeTemplate" description="My Custom Layout">
+  <aura:attribute name="header" type="Aura.Component[]" />
+
+  <aura:attribute name="left_col" type="Aura.Component[]" />
+  <aura:attribute name="mid_col" type="Aura.Component[]" />
+  <aura:attribute name="right_col" type="Aura.Component[]" />
+
+  <aura:attribute name="footer" type="Aura.Component[]" />
+  <div>
+
+    <!-- Row 1 -->
+    <lightning:layout>
+
+      <lightning:layoutItem size="12" class="">
+        {!v.header}
+      </lightning:layoutItem>
+
+    </lightning:layout>
+
+    <!-- Row 2 -->
+    <lightning:layout>
+
+      <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+        {!v.left_col}
+      </lightning:layoutItem>
+
+      <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+        {!v.mid_col}
+        
+      </lightning:layoutItem>
+
+      <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+        {!v.right_col}
+      </lightning:layoutItem>
+
+    </lightning:layout>
+
+    <!-- Row 3 -->
+    <lightning:layout>
+
+      <lightning:layoutItem size="12" class="">
+        {!v.footer}
+      </lightning:layoutItem>
+
+    </lightning:layout>
+
+
+  </div>
+</aura:component>

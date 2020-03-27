@@ -1,0 +1,4 @@
+<aura:component>
+    <c:ChildCmp aura:id="childCmp" onclick="{!c.doHandle}" />
+    <lightning:button name="Invoke action of the child" label="Invoke action of the child" onclick="{!c.doClick}" />
+</aura:component>

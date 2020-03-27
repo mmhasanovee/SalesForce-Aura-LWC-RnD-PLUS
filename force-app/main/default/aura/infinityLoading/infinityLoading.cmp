@@ -1,0 +1,26 @@
+<aura:component controller="AccountTableController" implements="flexiPage:availableForAllPageTypes">
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+
+    <!--Aura Attributes START-->
+    <aura:attribute name="accountColums" type="List" />
+    <aura:attribute name="accountData" type="Object" />
+    <aura:attribute name="enableInfiniteLoading" type="Boolean" default="true" />
+    <aura:attribute name="initialRows" type="Integer" default="5" />
+    <aura:attribute name="currentCount" type="Integer" default="10" />
+    <aura:attribute name="totalRows" type="Integer" default="0" />
+    <aura:attribute name="loadOffset" type="Integer" default="1" />
+    <!--Set when to trigger loading of more rows-->
+    <!--Aura Attributes END-->
+
+    <div class="slds-page-header" role="banner">
+        <span class="slds-page-header__title">Accounts List</span>
+    </div>
+
+    <!--Lightning data table markup-->
+    <div style="height:250px">
+        <lightning:datatable aura:id="dataTableID" keyField="Id" hideCheckboxColumn="true" columns="{!v.accountColums}"
+            data="{!v.accountData}" enableInfiniteLoading="{!v.enableInfiniteLoading}" loadMoreOffset="{!v.loadOffset}"
+            onloadmore="{!c.handleLoadMore}" />
+    </div>
+</aura:component>

@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/testLWC": [
+                "testLWC/testLWC.js"
+            ],
+            "c/planeListXLwc": [
+                "planeListXLwc/planeListXLwc.js"
+            ],
+            "c/myFirstLWC": [
+                "myFirstLWC/myFirstLWC.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

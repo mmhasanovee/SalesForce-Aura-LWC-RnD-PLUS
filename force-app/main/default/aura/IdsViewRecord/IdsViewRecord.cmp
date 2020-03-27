@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    access="global">
+
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="recordFields" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+
+    <!-- Lds for view record -->
+
+    <force:recordData aura:id="recordViewer" recordId="{!v.recordId}" layoutType="FULL" mode="VIEW"
+        targetRecord="{!v.record}" targetFields="{!v.recordFields}" targetError="{!v.recordError}" />
+
+        <div>
+            Using targetFields: <br/>
+            {!v.recordFields.Name} <br/>
+            {!v.recordFields.Id} <br/>
+            Using targetRecords- <br/>
+            {!v.record.fields.Name.value}
+        </div>
+
+
+</aura:component>

@@ -1,0 +1,14 @@
+.THIS {
+  background: rgb(181, 13, 233);
+}
+
+.THIS .clock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: rgb(210, 230, 235);
+  font-size: 60px;
+  font-family: Orbitron;
+  letter-spacing: 7px;
+}

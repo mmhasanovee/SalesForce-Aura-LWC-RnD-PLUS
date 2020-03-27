@@ -1,0 +1,47 @@
+<aura:component implements="lightning:isUrlAddressable">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="orderId" type="String" />
+    <aura:attribute name="orderRecord" type="Object" />
+    <aura:attribute name="targetError" type="String" />
+
+
+    <!-- force:recordData includes a new attribute called targetFields, which is populated with a simplified view of the record’s fields. targetFields is automatically updated whenever Lightning Data Service detects a record change. v.targetFields.Name is equivalent to v.targetRecord.fields.Name.value. A simple way to update force:recordPreview usage to force:recordData is to change references from targetRecord to targetFields. -->
+    <force:recordData aura:id="recordViewer" recordId="{!v.orderId}" targetFields="{!v.orderRecord}" layoutType="FULL"
+        targetError="{!v.targetError}" />
+
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <lightning:icon iconName="custom:custom8" alternative-text="Custom Icon" size="large" />
+
+
+
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate"
+                                        title="{!v.orderRecord.Name}">{!v.orderRecord.Name}</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p class="slds-page-header__name-meta">{!v.orderRecord.Name}
+                        </p>
+                        <lightning:formattedDateTime value="{!v.orderRecord.CreatedDate}" year="2-digit" month="short"
+                            day="2-digit" weekday="long" time-zone="GMT 6+" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slds-page-header slds-p-top_x-large" style="background-color: rgb(104, 33, 100)) ;opacity: 0.8;">
+        <lightning:recordForm recordId="{!v.orderId}" objectApiName="Beer_Order__c" layoutType="Full" columns="2"
+            mode="readonly" />
+    </div>
+</aura:component>

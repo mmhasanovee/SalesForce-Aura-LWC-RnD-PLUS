@@ -1,0 +1,43 @@
+<aura:component>
+    <aura:attribute name="recordList" type="Object" />
+    <lightning:overlayLibrary aura:id="overLayLib" />
+    <aura:attribute name="beerId" type="String" />
+    <aura:attribute name="beervalue" type="String" />
+
+    <aura:registerEvent name="addToCart" type="c:AddToCart" />
+
+    <div class="slds-p-around_small">
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.recordList}" var="item" indexVar="index">
+                <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+                    <lightning:card variant="Narrow" title="{!item.Name}" iconName="custom:custom1">
+                        <p class="slds-p-horizontal_small">
+                            <div class="slds-grid slds-glutters">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <img src="{!$Resource.BeerImg}" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-3">
+                                    Origin Name: {!item.name__c} <br />
+                                    Beer Name: {!item.Name} <br />
+                                    Price: {!item.Price__c} <br />
+                                    Alchohol: {!item.alcohol__c} %
+                                </div>
+                            </div>
+                        </p>
+                        <aura:set attribute="actions">
+                            <lightning:button name="{!item.id__c}" label="Detailed View" value="{!item.Name}"
+                                variant="brand" onclick="{!c.showinfo}" />
+                        </aura:set>
+                        <aura:set attribute="footer">
+                            <!-- here attribute=footer will set the button to the footer of the object -->
+                            <lightning:button name="{!item.id__c}" label="--Add to Cart--" value="{!index}"
+                                variant="destructive" onclick="{!c.addToCart}" />
+                        </aura:set>
+
+                    </lightning:card>
+                </div>
+            </aura:iteration>
+        </div>
+    </div>
+
+</aura:component>

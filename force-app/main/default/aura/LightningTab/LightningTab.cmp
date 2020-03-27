@@ -1,0 +1,9 @@
+<aura:component implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes">
+    <lightning:tabset variant="scoped" class="slds-p-top_x-small ">
+        <lightning:tab onactive="{! c.handleActive }" label="Plane List" id="list" />
+        <lightning:tab onactive="{! c.handleActive }" label="Insert New Plane" id="insert" />
+        <lightning:tab onactive="{! c.handleActive }" label="Delete A Plane" id="delete" />
+    </lightning:tabset>
+
+    
+</aura:component>

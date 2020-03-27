@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+    <defs>
+        <style>.cls-1{fill:#b3b3b3;}.cls-2{fill:#fff;}.cls-3{fill:#ccc;}.cls-4{fill:#566a8c;}</style>
+    </defs>
+    <title>Artboard 1</title>
+    <polygon class="cls-1" points="1101.44 901 1056 901 1056 785 865 785 865 901 818.56 901 800 928 960 928 1120 928 1101.44 901" />
+    <rect class="cls-2" x="464" y="166" width="992" height="627" rx="40.16" />
+    <path class="cls-3" d="M1415.83,196A10.18,10.18,0,0,1,1426,206.16V752.84A10.18,10.18,0,0,1,1415.83,763H504.17A10.18,10.18,0,0,1,494,752.84V206.16A10.18,10.18,0,0,1,504.17,196h911.66m0-30H504.17A40.16,40.16,0,0,0,464,206.16V752.84A40.16,40.16,0,0,0,504.17,793h911.66A40.16,40.16,0,0,0,1456,752.84V206.16A40.16,40.16,0,0,0,1415.83,166Z" />
+    <rect class="cls-4" x="515" y="217" width="890" height="126" />
+    <rect class="cls-4" x="515" y="678" width="890" height="63" />
+    <rect class="cls-4" x="515" y="357" width="283.61" height="305" />
+    <rect class="cls-4" x="816.61" y="357" width="283.61" height="305" />
+    <rect class="cls-4" x="1121.39" y="357" width="283.61" height="305" />
+</svg>

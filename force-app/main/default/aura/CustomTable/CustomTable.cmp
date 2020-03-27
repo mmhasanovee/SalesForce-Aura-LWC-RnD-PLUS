@@ -1,0 +1,31 @@
+<aura:component controller="DataTableAuraServices">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="accountList" type="Account" />
+    <aura:attribute name="idToDelete" type="List" />
+    <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="dataOffset" type="Integer" default="5" />
+
+    <div style="height: 300px;overflow:auto;overflow-x:hidden;" id="customers" onscroll="{!c.onScrollX}">
+        <table>
+            <tr>
+                <th>Check Box</th>
+                <th>Account Name</th>
+                <th>Industry</th>
+                <th>Rating</th>
+                <th>Phone</th>
+            </tr>
+            <aura:iteration items="{!v.accountList}" var="acc">
+                <tr>
+                    &nbsp;&nbsp;
+                    <ui:inputCheckbox name="{!acc.Id}" label="" change="{!c.onCheck}" />
+                    <td>{!acc.Name}</td>
+                    <td>{!acc.Industry}</td>
+                    <td>{!acc.Rating}</td>
+                    <td>{!acc.Phone}</td>
+                </tr>
+            </aura:iteration>
+        </table>
+    </div>
+
+    <div><button class="gradient-button-1" type="button" onclick="{!c.doDelete}">Delete</button></div>
+</aura:component>
