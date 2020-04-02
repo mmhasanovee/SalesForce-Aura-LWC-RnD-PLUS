@@ -1,0 +1,5 @@
+<aura:component
+  implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+>
+  <img src="https://i.ibb.co/1LzG1Dj/mew.jpg" />
+</aura:component>
