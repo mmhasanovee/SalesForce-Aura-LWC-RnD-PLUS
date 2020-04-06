@@ -2,41 +2,302 @@
   controller="PaanShopClass"
   implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
 >
+  <lightning:navigation aura:id="navigation" />
   <aura:attribute name="paanList" type="Object" />
 
   <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-  <div class="">
+
+  <!-- <aura:handler
+    name="PaanEvent"
+    event="c:PaanShop_DataPassing_Event"
+    action="{!c.handleCompEvent}"
+  />
+  <aura:registerEvent name="PaanEvent" type="c:PaanShop_DataPassing_Event" /> -->
+
+  <div
+    ><button
+      class="gradient-button-1"
+      type="button"
+      onclick="{!c.toggleDisplay}"
+      id="insert"
+      >Insert New</button
+    >
+  </div>
+  <div class="" id="list">
     <div class="slds-grid slds-wrap">
       <aura:iteration items="{!v.paanList}" var="item" indexVar="index">
-        <div class="slds-col slds-size_1-of-3 slds-p-left_small slds-p-right_small slds-p-bottom_small">
+        <div
+          class="slds-col slds-size_1-of-3 slds-p-left_small slds-p-right_small slds-p-bottom_small"
+        >
           <lightning:card
             variant="Narrow"
             title="{!item.Name}"
             iconName="custom:custom5"
+            class="listBackground"
           >
             <p class="">
               <div class="slds-grid slds-glutters">
                 <div class="slds-col slds-size_1-of-1 slds-p-around_small">
-                  <img src="{!item.Paan_Img_Url__c}" />
+                  <img class="halfImg" src="{!item.Paan_Img_Url__c}" />
                 </div>
               </div>
             </p>
             <aura:set attribute="actions">
               <lightning:button
-                name="{!item.id__c}"
+                name="{!item.Paan_Img_Url__c}"
                 label="Detailed View"
-                value="{!item.Name}"
+                value="{!item.Id}"
                 variant="brand"
-                onclick="{!c.showinfo}"
+                onclick="{!c.detailView}"
               />
             </aura:set>
             <aura:set attribute="footer">
               <!-- here attribute=footer will set the button to the footer of the object -->
-              <b><em>{!item.Paan_Description__c}</em></b>
+              <em>{!item.Paan_Description__c}</em>
             </aura:set>
           </lightning:card>
         </div>
       </aura:iteration>
     </div>
+  </div>
+
+  <!--/////////////////////////// Insert new form starts here ////////////////////////////////-->
+
+  <aura:attribute name="accountId" type="String" />
+  <aura:attribute type="Boolean" default="true" name="buttonDis" />
+
+  <aura:attribute
+    name="insertNewPaanV"
+    type="Paan_List__c"
+    default="{
+                                                                 sobjectName : 'Paan_List__c',
+                                                                 Name: '',
+                                                                 Paan_Color__c:'',
+                                                                 Paan_Description__c: '',
+                                                                 Paan_Img_Url__c: '',Paan_Price__c: '',Paan_Quantity__c: ''}"
+  />
+  <div class="container" id="form" style="display: none;">
+    <lightning:input
+      type="text"
+      aura:id="paanForm"
+      class="textInput"
+      messageWhenValueMissing="Please enter Paan Name"
+      value="{!v.insertNewPaanV.Name}"
+      label="Name"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+
+    <lightning:select
+      aura:id="colorValue"
+      name="colorValue"
+      label="Color"
+      required="true"
+      onchange="{!c.selectColor}"
+    >
+      <option value="">choose one..</option>
+      <option value="Light Green">Light Green</option>
+      <option value="Medium Green">Medium Green</option>
+      <option value="Dark Green">Dark Green</option>
+    </lightning:select>
+    <lightning:input
+      type="text"
+      aura:id="paanForm"
+      class="textInput"
+      messageWhenValueMissing="Please enter description"
+      value="{!v.insertNewPaanV.Paan_Description__c}"
+      label="Description"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+
+    <lightning:input
+      type="text"
+      class="textInput"
+      messageWhenValueMissing="Please enter img url"
+      aura:id="paanForm"
+      value="{!v.insertNewPaanV.Paan_Img_Url__c}"
+      label="Img URL"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+    <lightning:input
+      type="number"
+      class="textInput"
+      messageWhenValueMissing="Please enter price"
+      aura:id="paanForm"
+      value="{!v.insertNewPaanV.Paan_Price__c}"
+      label="Price"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+    <lightning:input
+      type="number"
+      class="textInput"
+      messageWhenValueMissing="Please enter quantity"
+      aura:id="paanForm"
+      value="{!v.insertNewPaanV.Paan_Quantity__c}"
+      label="Quantity"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+
+    <!-- <lightning:inputField aura:id="planeForm" value="{!v.CreatePlane.Status__c}"/> -->
+
+    <lightning:button
+      class="slds-m-top_medium"
+      label="Insert New Paan"
+      variant="brand"
+      onclick="{!c.doSave}"
+      disabled="{!v.buttonDis}"
+    />
+  </div>
+
+  <!-- detailed view starts in here -->
+  <aura:attribute name="paanId" type="String" />
+  <aura:attribute name="imageurl" type="String" />
+  <div id="form">
+    <lightning:recordViewForm
+      recordId="{!v.paanId}"
+      objectApiName="Paan_List__c"
+    >
+      <div id="recordViewPaan" style="display: none;">
+        <div class="">
+          <img class="fullImg" src="{!v.imageurl}" alt="" />
+        </div>
+        <div class="slds-grid slds-gutters">
+          <div class="slds-col">
+            <span
+              ><lightning:outputField
+                style="font-size: 10px;"
+                fieldName="Name"/>
+              <lightning:outputField fieldName="Paan_Color__c"/>
+              <lightning:outputField fieldName="Paan_Description__c"
+            /></span>
+          </div>
+          <div class="slds-col">
+            <span
+              ><lightning:outputField fieldName="Paan_Price__c"/>
+              <lightning:outputField fieldName="Paan_Quantity__c"
+            /></span>
+          </div>
+        </div>
+      </div>
+    </lightning:recordViewForm>
+    <button
+      class="gradient-button-1"
+      style="display: none;"
+      type="button"
+      onclick="{!c.updatePaan}"
+      value=""
+      id="update"
+      >Update</button
+    >
+    <button
+      class="gradient-button-1"
+      style="display: none;"
+      type="button"
+      onclick="{!c.deletePaan}"
+      value=""
+      id="delete"
+      >Delete</button
+    >
+  </div>
+
+  <!--////////////////////////////////////// update data of a paan ////////////////////////////////////-->
+
+  <!-- <aura:registerEvent name="quickPlane" type="c:CreateNewPlaneEvent"/> -->
+
+  <aura:attribute
+    name="updatePaanV"
+    type="Paan_List__c"
+    default="{
+                                                                 sobjectName : 'Paan_List__c',
+                                                                 Name: '',
+                                                                 Paan_Color__c:'Dark Green',
+                                                                 Paan_Description__c: '',
+                                                                 Paan_Img_Url__c: '',Paan_Price__c: '',Paan_Quantity__c: ''}"
+  />
+
+  <aura:attribute type="Boolean" default="true" name="buttonDisUpdate" />
+  <aura:attribute type="String" default="xxxx" name="mewmewd" />
+
+  <div class="containerUpdate" id="updateForm" style="display: none;">
+    <lightning:input
+      type="text"
+      id="max"
+      aura:id="paanUpdateForm"
+      class="textInput"
+      messageWhenValueMissing="Please enter Paan Name"
+      value="{!v.updatePaanV.Name}"
+      label="Name"
+      required="true"
+      onchange="{!c.fieldValidateForUpdate}"
+    />
+
+    <lightning:select
+      aura:id="updatecolorValue"
+      name="colorValue"
+      label="Color"
+      required="true"
+      onchange="{!c.fieldValidateForUpdate}"
+    >
+      <option value="{!v.updatePaanV.Paan_Color__c}"
+        >{!v.updatePaanV.Paan_Color__c}</option
+      >
+      <option value="{!v.updatePaanV.Paan_Color__c}">Light Green</option>
+      <option value="{!v.updatePaanV.Paan_Color__c}">Medium Green</option>
+      <option value="{!v.updatePaanV.Paan_Color__c}">Dark Green</option>
+    </lightning:select>
+    <lightning:input
+      type="text"
+      aura:id="paanUpdateForm"
+      class="textInput"
+      messageWhenValueMissing="Please enter description"
+      value="{!v.updatePaanV.Paan_Description__c}"
+      label="Description"
+      required="true"
+      onchange="{!c.fieldValidateForUpdate}"
+    />
+
+    <lightning:input
+      type="text"
+      class="textInput"
+      messageWhenValueMissing="Please enter img url"
+      aura:id="paanUpdateForm"
+      value="{!v.updatePaanV.Paan_Img_Url__c}"
+      label="Img URL"
+      required="true"
+      onchange="{!c.fieldValidateForUpdate}"
+    />
+    <lightning:input
+      id="fffx"
+      type="number"
+      class="textInput"
+      messageWhenValueMissing="Please enter price"
+      aura:id="paanUpdateForm"
+      value="{!v.updatePaanV.Paan_Price__c}"
+      label="Price"
+      required="true"
+      onchange="{!c.fieldValidateForUpdate}"
+    />
+    <lightning:input
+      type="number"
+      class="textInput"
+      messageWhenValueMissing="Please enter quantity"
+      aura:id="paanUpdateForm"
+      value="{!v.updatePaanV.Paan_Quantity__c}"
+      label="Quantity"
+      required="true"
+      onchange="{!c.fieldValidateForUpdate}"
+    />
+
+    <lightning:button
+      label="Update Paan"
+      value=""
+      variant="brand"
+      onclick="{!c.doUpdate}"
+      disabled="{!v.buttonDisUpdate}"
+    />
   </div>
 </aura:component>

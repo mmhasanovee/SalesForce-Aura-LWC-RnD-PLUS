@@ -1,0 +1,38 @@
+<aura:component controller="PaanShopClass"
+implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes">
+
+<aura:attribute name="paanId" type="String" />
+<lightning:navigation aura:id="navigation" />
+
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+<div class="" id="list">
+    <div class="slds-grid slds-wrap">
+      <aura:iteration items="{!v.paanList}" var="item" indexVar="index">
+        <div
+          class="slds-col slds-size_1-of-3 slds-p-left_small slds-p-right_small slds-p-bottom_small"
+        >
+          <lightning:card
+            variant="Narrow"
+            title="{!item.Name}"
+            iconName="custom:custom5"
+          >
+            <p class="">
+              <div class="slds-grid slds-glutters">
+                <div class="slds-col slds-size_1-of-1 slds-p-around_small">
+                  <img src="{!item.Paan_Img_Url__c}" />
+                </div>
+              </div>
+            </p>
+            
+            <aura:set attribute="footer">
+              <!-- here attribute=footer will set the button to the footer of the object -->
+              <b><em>{!item.Paan_Description__c}</em></b>
+            </aura:set>
+          </lightning:card>
+        </div>
+      </aura:iteration>
+    </div>
+  </div>
+
+</aura:component>	

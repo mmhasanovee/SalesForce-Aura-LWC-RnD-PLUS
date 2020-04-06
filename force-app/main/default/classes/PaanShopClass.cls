@@ -17,7 +17,7 @@ public with sharing class PaanShopClass {
 
     @AuraEnabled
     public static void DeleteRecord(String delId){
-        List<Paan_Name__c> dataToDelete = new List<Paan_Name__c> ([Select Id from Paan_Name__c Where Id=:delID]);
+        List<Paan_List__c> dataToDelete = new List<Paan_List__c> ([Select Id from Paan_List__c Where Id=:delID]);
         delete dataToDelete;
     }
 
@@ -45,6 +45,28 @@ public with sharing class PaanShopClass {
 
     //-----------------------------------------------Custom data table ends here--------------------------------//
 
+    //insert a list of new pan
+    @AuraEnabled
+    public static void insertNewPaan(Paan_List__c paan){
+    
+        insert paan;
+    }
 
+    @AuraEnabled
+    public static void updatePaanValue(Paan_List__c paan, Id AccountId){
+    
+        update paan;
+    }
+
+    //get a specific pan data
+    @AuraEnabled
+    public static Paan_List__c getPaan(String searchID){
+        //con.AccountId=AccountId;
+        Paan_List__c paanList = [Select Name, Paan_Price__c, Paan_Quantity__c, Paan_Color__c,Paan_Description__c,Paan_Img_Url__c From Paan_List__c Where Id=:searchID];
+
+        return paanList;
+        //return con;
+        
+    }
 
 }

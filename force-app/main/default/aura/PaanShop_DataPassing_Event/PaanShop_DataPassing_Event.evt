@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Event template">
+  <aura:attribute name="paanList" type="Paan_List__c" />
+</aura:event>
