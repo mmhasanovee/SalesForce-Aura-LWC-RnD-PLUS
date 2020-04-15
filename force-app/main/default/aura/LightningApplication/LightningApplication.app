@@ -33,6 +33,7 @@
   <!-- <c:DigitalClock /> -->
   <!-- <c:CustomTable /> -->
   <!-- <c:PaanShop_Insert_New/> -->
-  <c:PaanShop_Paan_DetailedView/>
+  <!-- <c:PaanShop_Paan_DetailedView /> -->
+  <c:PaanShop_HomeClock />
   <!-- <c:infinityLoading /> -->
 </aura:application>

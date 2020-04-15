@@ -16,6 +16,7 @@
     <table>
       <tr>
         <th>Check Box</th>
+        <th>Order Name</th>
         <th>Buyer Name</th>
         <th>Paan Name</th>
         <th>Total Quantity</th>
@@ -26,6 +27,7 @@
           &nbsp;&nbsp;
           <ui:inputCheckbox name="{!sold.Id}" label="" change="{!c.onCheck}" />
           <td>{!sold.Name}</td>
+          <td>{!sold.Paan_Customer__r.Name}</td>
           <td>{!sold.Paan_Name__r.Name}</td>
           <td>{!sold.Total_Quantity__c}</td>
           <td>{!sold.Total_Amount__c}</td>

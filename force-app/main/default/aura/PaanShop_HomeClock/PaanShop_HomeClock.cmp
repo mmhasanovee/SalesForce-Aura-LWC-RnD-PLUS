@@ -1,0 +1,31 @@
+<aura:component
+  implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+>
+  <aura:handler name="init" value="{!this}" action="{!c.showTime}" />
+  <ltng:require styles="https://fonts.googleapis.com/css2?family=Montserrat" />
+  <div clock="clock">
+    <p
+      clock="clock"
+      style="
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        color: #2eaf7d;
+        font-size: 60px;
+
+        letter-spacing: 7px;
+        border-radius: 18px;
+        height: 145px;
+        width: 490px;
+        padding-top: 110px;
+        padding-left: 47px;
+      "
+    >
+      <lightning:formattedText
+        aura:id="clock"
+        clock="clock"
+        value="I like salesforce.com and info.salesforce.com"
+      />
+    </p>
+  </div>
+</aura:component>

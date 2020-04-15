@@ -1,0 +1,97 @@
+<aura:component
+  controller="PaanShopClass"
+  implements="force:hasRecordId,force:hasSObjectName,flexipage:availableForAllPageTypes"
+>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:attribute name="customerList" type="Paan_Customer__c" />
+  <aura:attribute name="idToDelete" type="List" />
+  <aura:attribute name="isLoading" type="Boolean" default="false" />
+  <aura:attribute name="dataOffset" type="Integer" default="5" />
+
+  <div
+    style="height: 500px; overflow: auto; overflow-x: hidden;"
+    id="customerListOfPaan"
+    onscroll="{!c.onScrollX}"
+  >
+    <table>
+      <tr>
+        <th>Check Box</th>
+        <th>Buyer Name</th>
+        <th>Buyer Address</th>
+        <th>Buyer Cell</th>
+      </tr>
+      <aura:iteration items="{!v.customerList}" var="sold">
+        <tr>
+          &nbsp;&nbsp;
+          <ui:inputCheckbox name="{!sold.Id}" label="" change="{!c.onCheck}" />
+          <td>{!sold.Name}</td>
+          <td>{!sold.Address__c}</td>
+          <td>{!sold.Phone_Number__c}</td>
+        </tr>
+      </aura:iteration>
+    </table>
+  </div>
+
+  <div>
+    <button id="deleteX" class="gradient-button-1" type="button" onclick="{!c.doDelete}">
+      Delete
+    </button>
+    <button id="insertX" class="gradient-button-1" type="button" onclick="{!c.toggleDisplay}">
+      Insert
+    </button>
+  </div>
+
+  <!--/////////////////////////// Insert new form starts here ////////////////////////////////-->
+
+  <aura:attribute name="accountId" type="String" />
+  <aura:attribute type="Boolean" default="true" name="buttonDis" />
+
+  <aura:attribute
+    name="insertNewCustomerV"
+    type="Paan_Customer__c"
+    default="{
+                                                                 sobjectName : 'Paan_Customer__c',
+                                                                 Name: '',
+                                                                 Phone_Number__c:'',
+                                                                 Address__c: ''}"
+  />
+  <div class="container" id="formX" style="display: none;">
+    <lightning:input
+      type="text"
+      class="textInput"
+      messageWhenValueMissing="Please enter Customer Name"
+      value="{!v.insertNewCustomerV.Name}"
+      label="Name"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+
+    <lightning:input
+      type="number"
+      class="textInput"
+      messageWhenValueMissing="Please enter cell"
+      value="{!v.insertNewCustomerV.Phone_Number__c}"
+      label="Cell"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+
+    <lightning:input
+      type="text"
+      class="textInput"
+      messageWhenValueMissing="Please enter Address"
+      value="{!v.insertNewCustomerV.Address__c}"
+      label="Address"
+      required="true"
+      onchange="{!c.fieldValidate}"
+    />
+
+    <lightning:button
+      class="slds-m-top_medium"
+      label="Insert New Customer"
+      variant="brand"
+      onclick="{!c.doSave}"
+      disabled="{!v.buttonDis}"
+    />
+  </div>
+</aura:component>

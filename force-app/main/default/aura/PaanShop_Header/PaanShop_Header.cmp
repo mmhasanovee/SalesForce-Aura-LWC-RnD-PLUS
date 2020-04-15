@@ -1,32 +1,44 @@
 <aura:component>
-    <aura:attribute name="TagLine" type="String" />
-    <aura:attribute name="message" type="String" />
-    <div class="slds-page-header" style="background-color: rgb(104, 33, 100)) ;opacity: 0.8;">
-        <div class="slds-page-header__row">
-            <div class="slds-page-header__col-title">
-                <div class="slds-media">
-                    <div class="slds-media__figure">
-                        <span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
-
-                        </span>
-                    </div>
-                    <div class="slds-media__body">
-                        <div class="slds-page-header__name">
-                            <div class="slds-page-header__name-title">
-                                <h1>
-                                    <span class="slds-page-header__title slds-truncate"
-                                        title="Rohde Corp - 80,000 Widgets">
-                                        {!v.TagLine}
-                                    </span>
-                                </h1>
-                            </div>
-                        </div>
-                        <p class="slds-page-header__name-meta">
-                            {!v.message}
-                        </p>
-                    </div>
-                </div>
+  <aura:attribute name="TagLine" type="String" />
+  <aura:attribute name="message" type="String" />
+  <ltng:require styles="https://fonts.googleapis.com/css2?family=Montserrat" />
+  <div
+    class="slds-page-header"
+    style="background-color: rgb(104, 33, 100)) ;opacity: 0.8;"
+  >
+    <div class="slds-page-header__row">
+      <div class="slds-page-header__col-title">
+        <div class="slds-media">
+          <div class="slds-media__figure">
+            <span
+              class="slds-icon_container slds-icon-standard-opportunity"
+              title="opportunity"
+            >
+            </span>
+          </div>
+          <div class="slds-media__body">
+            <div class="slds-page-header__name">
+              <div class="slds-page-header__name-title">
+                <h1>
+                  <span
+                    class="slds-page-header__title slds-truncate kk zz"
+                    title="Welcome!"
+                  >
+                    {!v.TagLine}
+                    <img
+                      src="https://www.clipartkey.com/mpngs/b/4-49328_leaf-clipart.png"
+                      alt="" style="height: 65px;"
+                    />
+                  </span>
+                </h1>
+              </div>
             </div>
+            <p class="slds-page-header__name-meta">
+              {!v.message}
+            </p>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </aura:component>

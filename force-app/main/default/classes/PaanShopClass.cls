@@ -12,7 +12,7 @@ public with sharing class PaanShopClass {
 
     @AuraEnabled
     public static List<Paan_Name__c> fetchSoldPaan(){
-        return [Select Name, Paan_Name__r.Name,Total_Quantity__c, Total_Amount__c from Paan_Name__c Limit 8];
+        return [Select Name, Paan_Name__r.Name,Paan_Customer__r.Name,Total_Quantity__c, Total_Amount__c from Paan_Name__c Limit 8];
     }
 
     @AuraEnabled
@@ -68,5 +68,37 @@ public with sharing class PaanShopClass {
         //return con;
         
     }
+
+     //these several classes bring customer list and show with lazy loading feature in custom data table
+
+     @AuraEnabled
+     public static List<Paan_Customer__c> fetchCustomer(){
+         return [Select Name, Phone_Number__c,Address__c from Paan_Customer__c Limit 8];
+     }
+ 
+ 
+     @AuraEnabled
+     public static void batchDeleteRecordFromCustomTableCmpC(List<String> listOfIds){
+         
+         //delete listOfIds;
+ 
+         List < Paan_Customer__c > lstDeleteRec = [select Id from Paan_Customer__c where id IN: listOfIds];
+ 
+         delete lstDeleteRec;
+     }
+ 
+     @AuraEnabled
+    public static List<Paan_Customer__c> getCustomerList(Integer dLimit,Integer dOffset){
+     List<Paan_Customer__c> paanList=new List<Paan_Customer__c>([Select Name, Phone_Number__c,Address__c from Paan_Customer__c limit :dLimit offset :dOffset]);
+     return paanList;
+     }
+
+     //insert a list of customer
+    @AuraEnabled
+    public static void insertNewCustomer(Paan_Customer__c customer){
+    
+        insert customer;
+    }
+
 
 }

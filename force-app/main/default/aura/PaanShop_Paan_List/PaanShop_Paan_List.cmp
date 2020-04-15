@@ -14,14 +14,15 @@
   />
   <aura:registerEvent name="PaanEvent" type="c:PaanShop_DataPassing_Event" /> -->
 
-  <div
-    ><button
+  <div>
+    <button
       class="gradient-button-1"
       type="button"
       onclick="{!c.toggleDisplay}"
       id="insert"
-      >Insert New</button
     >
+      Insert New
+    </button>
   </div>
   <div class="" id="list">
     <div class="slds-grid slds-wrap">
@@ -45,7 +46,8 @@
             <aura:set attribute="actions">
               <lightning:button
                 name="{!item.Paan_Img_Url__c}"
-                label="Detailed View"
+                label="Details"
+                class="detailBackground"
                 value="{!item.Id}"
                 variant="brand"
                 onclick="{!c.detailView}"
@@ -170,14 +172,14 @@
             <span
               ><lightning:outputField
                 style="font-size: 10px;"
-                fieldName="Name"/>
-              <lightning:outputField fieldName="Paan_Color__c"/>
+                fieldName="Name" />
+              <lightning:outputField fieldName="Paan_Color__c" />
               <lightning:outputField fieldName="Paan_Description__c"
             /></span>
           </div>
           <div class="slds-col">
             <span
-              ><lightning:outputField fieldName="Paan_Price__c"/>
+              ><lightning:outputField fieldName="Paan_Price__c" />
               <lightning:outputField fieldName="Paan_Quantity__c"
             /></span>
           </div>
@@ -191,8 +193,9 @@
       onclick="{!c.updatePaan}"
       value=""
       id="update"
-      >Update</button
     >
+      Update
+    </button>
     <button
       class="gradient-button-1"
       style="display: none;"
@@ -200,8 +203,9 @@
       onclick="{!c.deletePaan}"
       value=""
       id="delete"
-      >Delete</button
     >
+      Delete
+    </button>
   </div>
 
   <!--////////////////////////////////////// update data of a paan ////////////////////////////////////-->
